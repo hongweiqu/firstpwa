@@ -106,7 +106,16 @@ var webpackConfig = merge(baseWebpackConfig, {
       staticFileGlobs: ['dist/**/*.{js,html,css}'],
       minify: true,
       stripPrefix: 'dist/'
-    })
+    }),
+    // copy custom static assets
+    new CopyWebpackPlugin([
+      {
+        context: config.build.assetsRoot,
+        from: '**/*',
+        to: config.build.docsRoot,
+        ignore: ['.*']
+      }
+    ]),
   ]
 })
 
